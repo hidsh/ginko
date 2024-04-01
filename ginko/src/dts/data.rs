@@ -9,7 +9,7 @@ use std::sync::Arc;
 ///     Usually included by device-tree files and ends with `.dtsi`
 /// * `FileType::DtSourceOverlay`: Device-tree source overlay files.
 ///     Usually built as standalone and uses references to define where an overlay should be applied.
-///     Usually, these files end with `.dtso`
+///     Usually, these files end with `.dtso` and `.overlay`
 /// * `FileType::Unknown`: Unknown file type.
 #[derive(Clone, Copy, Eq, PartialEq, Default, Debug)]
 pub enum FileType {
@@ -47,7 +47,7 @@ impl FileType {
         match ending {
             "dts" => FileType::DtSource,
             "dtsi" => FileType::DtSourceInclude,
-            "dtso" => FileType::DtSourceOverlay,
+            "dtso" | "overlay" => FileType::DtSourceOverlay,
             _ => FileType::Unknown,
         }
     }
